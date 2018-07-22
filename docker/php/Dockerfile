@@ -9,10 +9,13 @@ RUN apt-get install -y git \
 RUN docker-php-ext-install opcache
 
 # install xdebug
-RUN pecl install xdebug-2.6.0
-
+RUN pecl install xdebug-2.6.0 \
+    && docker-php-ext-enable xdebug
 # install zip
 RUN apt-get install zip unzip
+
+# install pcntl
+RUN docker-php-ext-install pcntl
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer

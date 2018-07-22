@@ -5,6 +5,19 @@ services:
     build: ./docker/php
     ports:
      - "8081"
+     - "9000"
     volumes:
       - ./:/app
     command: tail -f /dev/null
+    networks:
+      app_net:
+        ipv4_address: 172.21.0.2
+
+networks:
+  app_net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      -
+        subnet: 172.21.0.0/24
