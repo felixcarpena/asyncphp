@@ -5,8 +5,13 @@ require __DIR__ . '/../vendor/autoload.php';
 $loop = React\EventLoop\Factory::create();
 
 $i = 0;
-$loop->addPeriodicTimer(1, function () use (&$i) {
-    echo ++$i, PHP_EOL;
+$j = 0;
+$loop->addPeriodicTimer(0.2, function () use (&$i) {
+    sleep(10);
+    echo "i".++$i, PHP_EOL;
+});
+$loop->addPeriodicTimer(1, function () use (&$j) {
+    echo "j".++$j, PHP_EOL;
 });
 
 $loop->addTimer(0.8, function () {
