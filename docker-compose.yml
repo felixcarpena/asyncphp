@@ -13,6 +13,22 @@ services:
       app_net:
         ipv4_address: 172.21.0.2
 
+  asyncphp-rabbit:
+    hostname: asyncphp-rabbit
+    container_name: asyncphp-rabbit
+    image: rabbitmq:3-management
+    environment:
+      - RABBITMQ_DEFAULT_USER=root
+      - RABBITMQ_DEFAULT_PASS=root
+      - VIRTUAL_HOST=/
+      - VIRTUAL_PORT=15672
+    ports:
+      - "127.0.0.1::15672"
+      - "127.0.0.1::5672"
+    networks:
+      app_net:
+        ipv4_address: 172.21.0.3
+
 networks:
   app_net:
     driver: bridge
