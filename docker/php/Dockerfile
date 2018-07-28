@@ -5,12 +5,17 @@ RUN apt-get update && apt-get install -y --no-install-recommends apt-utils
 RUN apt-get install -y git \
     && apt-get install -y sudo
 
+# Install mbstring and bcmath required by amqplib
+RUN docker-php-ext-install mbstring \
+    &&  docker-php-ext-install bcmath
+
 # Install opcache
 RUN docker-php-ext-install opcache
 
 # install xdebug
 RUN pecl install xdebug-2.6.0 \
     && docker-php-ext-enable xdebug
+
 # install zip
 RUN apt-get install zip unzip
 
