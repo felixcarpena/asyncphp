@@ -5,6 +5,7 @@ require __DIR__ . '/../vendor/autoload.php';
 $loop = React\EventLoop\Factory::create();
 
 $server = new React\Http\Server(function (Psr\Http\Message\ServerRequestInterface $request) {
+    sleep(10);
     return new React\Http\Response(
         200,
         array('Content-Type' => 'text/plain'),
